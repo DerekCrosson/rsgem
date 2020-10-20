@@ -21,8 +21,6 @@ module RSGem
         File.open(destination, 'w') do |file|
           file.puts config_file_source_content
         end
-
-        puts Colors.colorize("\t#{display_name} CI configuration added", :green)
       end
 
       private

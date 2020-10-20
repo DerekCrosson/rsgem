@@ -139,7 +139,7 @@ RSpec.describe RSGem::Gem do
 
     context 'when gem name options is missing' do
       it 'raises a missing gem name error' do
-        expect { described_class.new({}).create }.to raise_error(RSGem::MissingGemNameError)
+        expect { described_class.new({}).create }.to raise_error(RSGem::Errors::MissingGemName)
       end
     end
 

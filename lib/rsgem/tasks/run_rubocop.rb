@@ -3,16 +3,11 @@
 module RSGem
   module Tasks
     class RunRubocop < Base
+      OUTPUT = OutputStruct.new(name: 'Run rubocop')
+
       def perform
-        puts "\tRubocop:"
-        @output = `cd #{context.folder_path} && bundle exec rubocop -a`
-        puts "\t\t#{last_line}"
-      end
-
-      private
-
-      def last_line
-        @output.split("\n").last
+        system("cd #{context.folder_path} && bundle exec rubocop -a", out: '/dev/null')
+        raise RSGem::Errors::Base if $? != 0
       end
     end
   end
