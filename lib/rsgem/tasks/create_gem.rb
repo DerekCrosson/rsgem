@@ -5,16 +5,15 @@ module RSGem
     class CreateGem < Base
       OUTPUT = OutputStruct.new(
         name: 'Create gem',
-        success: :success_message,
-        error: "Failed to run `bundle gem'. "\
-          "Check bundler is installed in your system or install it with `gem install bundler'.`"
+        success: :success_message
       )
 
       def perform
         system(shell_command, out: '/dev/null')
 
         if $? != 0
-          raise RSGem::Errors::Base
+          raise RSGem::Errors::Base, "Failed to run `bundle gem'. Check bundler is installed in "\
+                                      "your system or install it with `gem install bundler'.`"
         end
       end
 

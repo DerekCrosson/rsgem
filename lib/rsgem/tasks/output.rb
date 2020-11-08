@@ -12,11 +12,10 @@ module RSGem
         begin
           yield
           puts "\t#{Colors.colorize("[OK]", :green)} #{name}"
-          puts "\t#{warning}" if warning
           puts "\t#{success}" if success
+          puts "\t#{Colors.colorize("Warning: ", :yellow)} #{warning}" if warning
         rescue RSGem::Errors::Base => e
-          puts "\t#{e.message}"
-          puts "\t#{error}" if error
+          puts "\t#{Colors.colorize("[X]", :red)} #{e.message}"
           raise e
         end
       end
@@ -34,10 +33,6 @@ module RSGem
         else
           nil
         end
-      end
-
-      def error
-        deduce_output(self.class::OUTPUT.error)
       end
 
       def name

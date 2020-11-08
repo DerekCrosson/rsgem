@@ -8,7 +8,7 @@ module RSGem
     # https://github.com/rootstrap/tech-guides/blob/master/open-source/developing_gems.md#gemfilegemfilelockgemspec
     #
     class IgnoreGemfileLock < Base
-      OUTPUT = OutputStruct.new(name: 'Ignore Gemfile.lock')
+      OUTPUT = OutputStruct.new(name: 'Ignore gemfile.lock')
 
       def perform
         gitignore << "\nGemfile.lock\n"

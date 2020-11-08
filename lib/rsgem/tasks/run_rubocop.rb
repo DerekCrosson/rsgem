@@ -6,7 +6,7 @@ module RSGem
       OUTPUT = OutputStruct.new(name: 'Run rubocop')
 
       def perform
-        system("cd #{context.folder_path} && bundle exec rubocop -a", out: '/dev/null')
+        system("cd #{context.folder_path} && bundle exec rubocop -A", [:out, :err] => '/dev/null')
         raise RSGem::Errors::Base if $? != 0
       end
     end

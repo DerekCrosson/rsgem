@@ -91,3 +91,6 @@ Style/HashTransformKeys:
 
 Style/HashTransformValues:
   Enabled: true
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false

@@ -25,14 +25,13 @@ module RSGem
       end
 
       def ensure_author
-        if missing_git_user?
-          gemspec.gsub!(/spec.email\s+=\s+.+/,
-                        "spec.email = ['#{TEMP_EMAIL}']")
+        return unless missing_git_user?
 
-          gemspec.gsub!(/spec.authors\s+=\s+.+/,
-                        "spec.authors = ['#{TEMP_USERNAME}']")
-        end
+        gemspec.gsub!(/spec.email\s+=\s+.+/,
+                      "spec.email = ['#{TEMP_EMAIL}']")
 
+        gemspec.gsub!(/spec.authors\s+=\s+.+/,
+                      "spec.authors = ['#{TEMP_USERNAME}']")
         write_gemspec
       end
 
@@ -42,7 +41,7 @@ module RSGem
 
       def warning_message
         return unless missing_git_user?
-        "No git user set. Setting #{TEMP_EMAIL} and #{TEMP_USERNAME} in gemspec,"\
+        "No git user set. Setting #{TEMP_EMAIL} and #{TEMP_USERNAME} in gemspec, "\
         "please change this before publishing your gem."
       end
     end

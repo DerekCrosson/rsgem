@@ -27,14 +27,14 @@ RSpec.describe 'CLI' do
     subject { `./exe/rsgem new #{gem_name}` }
 
     it 'creates a new gem' do
-      expect(subject).to include('Reek installed')
-      expect(subject).to include('Rubocop installed')
-      expect(subject).to include('Simplecov installed')
-      expect(subject).to include('Gemfile cleaned')
-      expect(subject).to include('Gemfile.lock added to .gitignore')
-      expect(subject).to include('Travis CI configuration added')
-      expect(subject).to include('Running bundle install:')
-      expect(subject).to include('Rubocop:')
+      expect(subject).to include('Install Reek')
+      expect(subject).to include('Install Rubocop')
+      expect(subject).to include('Install Simplecov')
+      expect(subject).to include('Clean gemfile')
+      expect(subject).to include('Ignore gemfile.lock')
+      expect(subject).to include('Add CI configuration for Travis')
+      expect(subject).to include('Bundle dependencies')
+      expect(subject).to include('Run rubocop')
       expect(File.exist?(gem_name)).to eq true
     end
 
@@ -42,7 +42,7 @@ RSpec.describe 'CLI' do
       subject { `./exe/rsgem new #{gem_name} --ci=travis` }
 
       it 'creates a new gem with travis configuration' do
-        expect(subject).to include('Travis CI configuration added')
+        expect(subject).to include('Add CI configuration for Travis')
         expect(File.exist?("#{gem_name}/.travis.yml")).to eq true
       end
     end
@@ -51,7 +51,7 @@ RSpec.describe 'CLI' do
       subject { `./exe/rsgem new #{gem_name} --ci=github_actions` }
 
       it 'creates a new gem with github actions configuration' do
-        expect(subject).to include('Github Actions CI configuration added')
+        expect(subject).to include('Add CI configuration for Github Actions')
         expect(File.exist?("#{gem_name}/.github/workflows/ci.yml")).to eq true
       end
     end
